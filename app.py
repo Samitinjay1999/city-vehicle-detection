@@ -109,7 +109,7 @@ def run_live_detection():
         stframe.image(annotated, channels="BGR")
 
     cap.release()
-    cv2.destroyAllWindows()
+    # cv2.destroyAllWindows()
 
 # === UI Tabs ===
 tabs = st.tabs(["📷 Annotate Image", "🎥 Annotate Video", "📡 Live Camera"])
