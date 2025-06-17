@@ -1,4 +1,20 @@
-.venv
-dataset
-data
-output
+# Ignore Python virtual environment
+.venv/
+
+# Ignore dataset folders (if not versioned)
+# dataset/
+# data/
+data/dataset
+data/prepare_data_and annotation
+
+# Ignore output/results
+output/
+
+runs/
+
+# Ignore Python cache files
+utils/__pycache__/
+__pycache__/
+*.py[cod]
+*.pyo
+
