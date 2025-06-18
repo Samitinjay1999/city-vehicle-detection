@@ -1,4 +1,3 @@
-
 # 🚦 Real-Time Object Detection System using YOLOv8
 
 This project is a real-time object detection system that can annotate images, videos, and live webcam feeds using a YOLOv8 model. It supports object classes: **Car**, **Two-wheeler**, and **Autorickshaw**. The project is built using **Streamlit** for the UI and **Ultralytics YOLOv8** for object detection.
@@ -10,7 +9,7 @@ This project is a real-time object detection system that can annotate images, vi
 - 🎯 **Image Annotation**  
   Upload an image and get annotated output with bounding boxes and confidence scores displayed in a table.
 
-- 🎬 **Video Annotation**  
+- 🎮 **Video Annotation**  
   Upload a video, annotate every frame using the YOLOv8 model, and preview the result directly in the app.
 
 - 📡 **Live Camera Annotation**  
@@ -28,7 +27,10 @@ Object-Detection-System/
 │
 ├── output/
 │   └── annotated_video.mp4      # Processed video output
-│
+├── utils/
+│   └── image_utils.py           # Process and annotate images  
+│   └── live_utils.py            # Process and annotate videos
+│   └── video_utils.py           # Live Processing and annotation
 ├── app.py                       # Main Streamlit application
 ├── README.md                    # Project documentation
 └── requirements.txt             # Python dependencies
@@ -73,6 +75,59 @@ You can deploy this app on:
 
 ---
 
+## 🏋️‍♂️ Dataset Info
+
+- **Size:** 100+ RGB images manually labeled
+- **Classes:** `car`, `two_wheeler`, `autorickshaw`
+- **Format:** YOLOv8 `.txt` label files
+- **Annotation Tool:** LabelImg
+
+The dataset was built by collecting traffic scene images from public sources. Each image was manually annotated using the LabelImg tool and split into `train/val` sets.
+
+---
+
+## 📊 Model Info & Training
+
+- **Model:** YOLOv8n (Ultralytics)
+- **Why YOLOv8?**
+  - Lightweight and fast
+  - Easy to fine-tune on custom data
+  - Ideal for real-time detection with good accuracy
+
+### Training Command:
+```python
+from ultralytics import YOLO
+model = YOLO("yolov8n.pt")
+model.train(data="yolov8_config.yaml", epochs=100, imgsz=640)
+```
+
+---
+
+## ⚖️ Challenges & Solutions
+
+| Challenge | Solution |
+|----------|----------|
+| Streamlit camera stream issues | Managed session state for live tab |
+| Torch runtime error in Streamlit | Patched `torch.classes.__path__` with dummy class |
+| Small dataset size | increased training epochs |
+| Git warnings on line endings | Ignored harmless CRLF/LF warnings |
+
+
+---
+
+## 📊 Performance Metrics
+
+| Metric        | Value    |
+|---------------|----------|
+| **mAP@0.5**      | 0.6869   |
+| **mAP@0.5:0.95** | 0.4228   |
+| Precision     | 0.6483   |
+| Recall        | 0.7503   |
+
+Evaluation was done on the validation set using the `model.val()` method. These results show strong performance for car and auto detection, with potential for improvement on two-wheelers with more training data.
+
+---
+
 ## 📊 Output Example
 
 ### Image Tab:
@@ -89,38 +144,28 @@ You can deploy this app on:
 - Supports `.mp4`, `.avi`, `.mov`
 
 ---
-
-## 🧠 YOLOv8 Model Info
-
-- Trained using annotated data from CVAT
-- Format: YOLOv8 (compatible with Ultralytics)
-- Classes:
-  - `car`
-  - `two_wheeler`
-  - `autorickshaw`
-
----
-
-<!-- ## 📸 Screenshots
+## 📸 Screenshots
 
 ### 1. Image Annotation  
-![Image Annotation Example](screenshots/image_example.jpg)
+![Image Annotation Example](data/screenshots/image_annotation_screenshot.png)
 
 ### 2. Video Annotation  
-![Video Annotation Example](screenshots/video_example.jpg)
+![Video Annotation Example](data/screenshots/video%20_annotation_screenshot.png)
 
-### 3. Live Detection  
-![Live Detection Example](screenshots/live_example.jpg)
+<!-- ### 3. Live Detection  
+![Live Detection Example](data/screenshots/live_example.jpg) -->
 
---- -->
-
-## 🛠 Future Improvements
-
-- Add bounding box coordinates to the table
-- model improvement for all type of vehicle 
 ---
 
-## ✍️ Scope Covered
+## 🔧 Future Improvements
+
+- Add bounding box coordinates to the table
+- Improve model generalization by expanding the dataset
+- Deploy to HuggingFace or Streamlit Cloud with webcam support
+
+---
+
+## ✔️ Scope Covered
 
 ✔ Image upload + annotation  
 ✔ Video upload + annotation + inline preview  
