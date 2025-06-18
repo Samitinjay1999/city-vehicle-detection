@@ -151,11 +151,8 @@ Evaluation was done on the validation set using the `model.val()` method. These 
 
 ### 2. Video Annotation  
 ![Video Annotation Example](data/screenshots/video%20_annotation_screenshot.png)
-#### Annotated Video Example
-<video width="600" controls>
-  <source src="data/screenshots/annotated_video.mp4" type="video/mp4">
-  Your browser does not support the video tag.
-</video>
+#### 🎬 Watch Video Output
+[▶️ Click to view sample video](data/screenshots/annotated_video.mp4)
 
 <!-- ### 3. Live Detection  
 ![Live Detection Example](data/screenshots/live_example.jpg) -->
