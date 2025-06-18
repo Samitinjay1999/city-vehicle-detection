@@ -154,8 +154,8 @@ Evaluation was done on the validation set using the `model.val()` method. These 
 #### 🎬 Watch Video Output
 [▶️ Click to view sample video](data/screenshots/annotated_video.mp4)
 
-<!-- ### 3. Live Detection  
-![Live Detection Example](data/screenshots/live_example.jpg) -->
+### 3. Live Detection  
+![Live Detection Example](data/screenshots/live_cam.png)
 
 ---
 
